@@ -3,22 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./promise.js"></script>
+    <!-- <script src="./promise.js"></script> -->
+    <script src="./class_promise.js"></script>
     <title>Promise</title>
 </head>
 <body>
     <script>
-        const p = new Promise((resolve,reject) => {
-            // setTimeout(() => {
-                resolve("OK");
-                console.log(111); 
-            // },1000);
-        })
+        // 基本測試
+        // const p = new Promise((resolve,reject) => {
+        //     setTimeout(() => {
+        //         // resolve("OK");
+        //         reject("err");
+        //         // throw 'error' 
+        //     },1000);
+        // })
         
-        p.then(value => {
-            console.log(222); 
-        })
-        console.log(333);
+        // p.then(value => {
+        //     console.log(value); 
+        // }, reason => {
+        //     console.warn(reason);
+        // })
+        // ======================================================
+
+        // Promise函數測試
+        // console.log(Promise.resolve('OK'));
+        // console.log(Promise.reject('ERR'));
+        // ===================================================
+        
+        // Promise API測試
+        const p1 =Promise.resolve('OK1');
+        const p2 =Promise.resolve('OK2');
+        const p3 =Promise.resolve('OK3');
+
+        // const result = Promise.all([p1 , p2, p3]);
+        const result = Promise.race([p1 , p2, p3]);
+        console.log(result);
     </script>
 </body>
 </html>

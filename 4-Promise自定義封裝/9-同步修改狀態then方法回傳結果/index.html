@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise-封裝 | 9 - 同步任務 then 回傳結果</title>
+    <script src="./promise.js"></script>
+</head>
+<body>
+    <script>
+        //實例化物件
+        let p = new Promise((resolve, reject) => {
+            resolve('OK');
+        });
+        //執行 then 方法
+        const res = p.then(value => {
+            //拋出例外
+            throw "FAIL";
+        }, reason=>{
+            console.warn(reason);
+        });
+        console.log(res);
+    </script>
+</body>
+</html>

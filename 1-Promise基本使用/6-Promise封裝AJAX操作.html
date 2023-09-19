@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise封装AJAX操作</title>
+</head>
+<body>
+    <script>
+        
+        //   * 封裝一個函數 sendAJAX 發送 GET AJAX 請求
+        //   * 參數 URL
+        //   * 傳回結果 Promise 對象
+         
+        function sendAJAX(url){
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.responseType = 'json';
+                xhr.open("GET", url);
+                xhr.send();
+                //處理結果
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        //判斷成功
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            //成功的結果
+                            resolve(xhr.response);
+                    
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+        }
+        sendAJAX('https://api.apiopen.top/getJok')
+        .then(value => {
+            console.log(value);
+        }, reason => {
+            console.warn(reason);
+        });
+    </script>
+</body>
+</html>

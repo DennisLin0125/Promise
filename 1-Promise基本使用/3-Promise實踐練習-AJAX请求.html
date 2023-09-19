@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise 封装 AJAX</title>
+    <link crossorigin='anonymous' href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise 封装 AJAX 操作</h2>
+        <button class="btn btn-primary" id="btn">點擊發送 AJAX</button>
+    </div>
+    <script>
+        //介面位址 https://api.apiopen.top/getJoke
+        //取得元素對象
+        const btn = document.querySelector('#btn');
+
+        btn.addEventListener('click', function(){
+            //建立 Promise
+            const p = new Promise((resolve, reject) => {
+                //1.建立對象
+                const xhr = new XMLHttpRequest();
+                //2. 初始化
+                xhr.open('GET', 'https://api.apiopen.top/getJoke');
+                //3. 傳送
+                xhr.send();
+                //4. 處理回應結果
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        //判斷回應狀態碼 2xx
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            //控制台輸出響應體
+                            resolve(xhr.response);
+                        }else{
+                            //控制台輸出回應狀態碼
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+            //呼叫then方法
+            p.then(value=>{
+                console.log(value);
+            }, reason=>{
+                console.warn(reason);
+            });
+        });
+    </script>
+</body>
+</html>

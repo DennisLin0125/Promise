@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise-封裝 | 10 - 非同步任務 then 返回結果</title>
+    <script src="./promise.js"></script>
+</head>
+<body>
+    <script>
+        // 實例化物件
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve('成功');
+                reject("錯誤");
+            }, 1000)
+        });
+
+        // 執行 then 方法
+        const res = p.then(value => {
+            // return '成功';
+            throw '錯誤';
+        }, reason => {
+            // console.warn(reason);
+            throw '錯誤';
+        });
+
+        console.log(res);
+    </script>
+</body>
+</html>

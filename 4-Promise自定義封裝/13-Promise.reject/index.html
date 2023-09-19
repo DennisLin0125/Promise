@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise-封裝 | 13 - Promise.reject 封裝</title>
+    <script src="./promise.js"></script>
+</head>
+<body>
+    <script>
+        // Promise.reject
+        const p = Promise.reject('錯誤');
+        const p2 = Promise.reject(new Promise((resolve, reject) => {
+            resolve('成功');
+        }));
+
+        console.log(p);
+        console.log(p2);
+    </script>
+</body>
+</html>
